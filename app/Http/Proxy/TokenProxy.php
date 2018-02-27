@@ -13,12 +13,26 @@ class TokenProxy
     {
         $this->http = $http;
     }
+    public function login($email, $password)
+    {
+        if (auth()->attempt(['email' => $email, 'password' => $password, 'is_active' => 1])) {
+            return $this->proxy('password', [
+                'username' => request('email'),
+                'password' => request('password'),
+                'scope' => ''
+            ]);
+        }
+        return response()->json([
+           'success' => false,
+           'message' => 'no match'
+        ],  421);
+    }
 
     public function proxy($grantType, array $data = [])
     {
         $data = array_merge($data, [
-            'client_id' => env('PASSPORT_ClIENT_ID'),
-            'client_secret' => env('PERSONAL_ClIENT_SECRET'),
+            'client_id' => '2',
+            'client_secret' => 'ddxd3wZLuVuEQe8k0anRmxDWmjE1pfVFvW4LOJVh',
             'grant_type' => $grantType,
             'scope' => '',
         ]);
@@ -28,8 +42,8 @@ class TokenProxy
 
         $token = json_decode((string)$response->getBody(), true);
         return response()->json([
-            'token' => $token['accrss_token'],
-            'expirse_in' => $token['expirse_in']
-        ])->cookie('refreshToken', $token['refresh_token'], 864000, null, null,false, true);
+            'token' => $token['access_token'],
+            'expires_in' => $token['expires_in']
+         ])->cookie('refreshToken', $token['refresh_token'], 864000, null, null,false, true);
     }
 }

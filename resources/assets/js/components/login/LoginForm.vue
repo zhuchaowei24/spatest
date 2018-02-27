@@ -46,16 +46,23 @@
         methods:{
             register(){
                 let formData = {
-                    client_id : '2',
-                    client_secret : 'ddxd3wZLuVuEQe8k0anRmxDWmjE1pfVFvW4LOJVh',
-                    grant_type : 'password',
-                    scope : '',
-                    username : this.email,
+//                    client_id : '2',
+//                    client_secret : 'ddxd3wZLuVuEQe8k0anRmxDWmjE1pfVFvW4LOJVh',
+//                    grant_type : 'password',
+//                    scope : '',
+//                    username : this.email,
+//                    password : this.password
+                    email : this.email,
                     password : this.password
                 }
-                axios.post('/oauth/token', formData).then(response => {
-                    JwtToken.setToken(response.data.access_token)
+                axios.post('/api/login', formData).then(response => {
+                    JwtToken.setToken(response.data.token)
+                    console.log(11111);
                     console.log(response.data)
+                    this.$store.state.authenticated = true;
+                    this.$router.push('profile')
+                }).catch(error => {
+                    console.log(error.response.data)
                 })
             }
         }

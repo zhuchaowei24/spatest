@@ -8,6 +8,7 @@
 require('./bootstrap');
 import VueRouter from 'vue-router'
 import router from  './router'
+import store from  './store/index'
 import App from './components/App'
 
 import zh_CN from 'vee-validate/dist/locale/zh_CN';
@@ -30,9 +31,10 @@ Vue.component('app', App)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/pages/Home.vue'));
 
-const app = new Vue({
+
+new Vue({
     el: '#app',
-    router
+    router,
+    store
 });
