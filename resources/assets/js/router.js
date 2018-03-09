@@ -4,6 +4,7 @@ import jwtToken from "./helpers/jwt";
 let routes = [
     {
         path:"/",
+        name: 'home',
         component: require('./components/pages/Home'),
         meta:{}
     },
@@ -22,7 +23,7 @@ let routes = [
         path:"/register",
         name: 'register',
         component: require('./components/register/Register'),
-        meta:{}
+        meta:{requireGuest:true}
     },
     {
         path : "/confirm",
@@ -34,7 +35,7 @@ let routes = [
         path:"/login",
         name: 'login',
         component: require('./components/login/Login'),
-        meta:{}
+        meta:{requireGuest:true}
     },
     {
         path:"/profile",
@@ -47,19 +48,26 @@ const router =  new  VueRouter({
     mode:'history',
     routes
 })
-router.beforeEach((to,from,next) => {
+router.beforeEach((to,from,next) => { //类似laravel中间件
     if(to.meta.requireAuth){
-        if(Store.state.authenticated || jwtToken.getToken())
+        if(Store.state.AuthUser.authenticated || jwtToken.getToken())
         {
-            console.log(1)
             return next()
-
-        } else {
-            console.log(2)
+        }
+        else {
             return next({'name' : 'login'})
         }
     }
-    return next()
+    if (to.meta.requireGuest) { //判断登陆 如果登陆之后跳转到首页
+        if(Store.state.AuthUser.authenticated || jwtToken.getToken())
+        {
+            return next({'name':'home'})
+        }
+        else {
+            return next()
+        }
+    }
+   next()
 })
 
 export default router

@@ -49,4 +49,9 @@ class LoginController extends Controller
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
     }
+
+    public function logout()
+    {
+        return $this->proxy->logout();
+    }
 }

@@ -1,7 +1,5 @@
 <template>
-    <form class="form-horizontal" @submit.prevent="register">
-
-
+    <form class="form-horizontal" @submit.prevent="login">
         <div class="form-group" :class="{'has-error': errors.has('email')}">
             <label for="email" class="col-md-4 control-label">邮箱</label>
             <div class="col-md-6">
@@ -44,25 +42,23 @@
             }
         },
         methods:{
-            register(){
-                let formData = {
-//                    client_id : '2',
-//                    client_secret : 'ddxd3wZLuVuEQe8k0anRmxDWmjE1pfVFvW4LOJVh',
-//                    grant_type : 'password',
-//                    scope : '',
-//                    username : this.email,
-//                    password : this.password
-                    email : this.email,
-                    password : this.password
-                }
-                axios.post('/api/login', formData).then(response => {
-                    JwtToken.setToken(response.data.token)
-                    console.log(11111);
-                    console.log(response.data)
-                    this.$store.state.authenticated = true;
-                    this.$router.push('profile')
-                }).catch(error => {
-                    console.log(error.response.data)
+            login(){
+                this.$validator.validateAll().then(result => {
+                    if (result) {
+                        let formData = {
+                            email : this.email,
+                            password : this.password
+                        }
+                        this.$store.dispatch('loginRequest',formData).then(response => {
+                            this.$notify({
+                                title: '登录成功啦~~！',
+                                type: 'success',
+                                message: '恭喜您登陆成功啦',
+                                duration: 5000
+                            })
+                            this.$router.push({name:"profile"})
+                        })
+                    }
                 })
             }
         }
