@@ -20,9 +20,10 @@ export default {
     actions:{
        setAuthUser({commit,dispatch}){
            return axios.get('/api/user').then(response => {
+               console.log(response.data[0])
                commit({
                    type:types.SET_AUTH_USER,
-                   user:response.data
+                   user:response.data[0]
                })
            })
        },

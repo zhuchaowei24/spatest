@@ -14,7 +14,7 @@
                          <a>注册</a>
                      </router-link>
                      <router-link  v-if="user.authenticated"  to="/profile" tag="li">
-                         <a>个人中心</a>
+                         <a>111</a>
                      </router-link>
                      <li v-if="user.authenticated"tag="li">
                          <a @click.prevent="logout" href="#">退出</a>
@@ -33,6 +33,7 @@
         font-size: 18px;
         line-height: 22px;
         height: 50px;
+
     }
 
 </style>
@@ -42,7 +43,10 @@
         computed : {
             ...mapState({
                 user : state=>state.AuthUser
-            })
+            }),
+//            get () {
+//                return this.$store.state.name
+//            },
         },
         methods:{
             logout(){

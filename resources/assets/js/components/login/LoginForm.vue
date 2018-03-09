@@ -53,7 +53,7 @@
                             this.$notify({
                                 title: '登录成功啦~~！',
                                 type: 'success',
-                                message: '恭喜您登陆成功啦',
+                                message: '恭喜您登录成功啦',
                                 duration: 5000
                             })
                             this.$router.push({name:"profile"})

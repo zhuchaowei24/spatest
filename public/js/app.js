@@ -51590,9 +51590,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 dispatch = _ref.dispatch;
 
             return axios.get('/api/user').then(function (response) {
+                console.log(response.data[0]);
                 commit({
                     type: __WEBPACK_IMPORTED_MODULE_0__mutation_type__["a" /* SET_AUTH_USER */],
-                    user: response.data
+                    user: response.data[0]
                 });
             });
         },
@@ -53165,7 +53166,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         _this.$notify({
                             title: '登录成功啦~~！',
                             type: 'success',
-                            message: '恭喜您登陆成功啦',
+                            message: '恭喜您登录成功啦',
                             duration: 5000
                         });
                         _this.$router.push({ name: "profile" });
@@ -53806,6 +53807,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
  //检测state数据 ,使用之前配置babelrc
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53877,7 +53879,7 @@ var render = function() {
                   ? _c(
                       "router-link",
                       { attrs: { to: "/profile", tag: "li" } },
-                      [_c("a", [_vm._v("个人中心")])]
+                      [_c("a", [_vm._v("111")])]
                     )
                   : _vm._e(),
                 _vm._v(" "),
