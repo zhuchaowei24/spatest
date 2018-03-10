@@ -16,7 +16,7 @@
                 <input type="password" v-validate
                        data-vv-rules="required|min:6" data-vv-as="密码"
                        v-model="password " id="password" class="form-control" name="password" required>
-                <span class="help-block" v-show="errors.has('name')">{{errors.first('password')}}</span>
+                <span class="help-block" v-show="errors.has('password')">{{errors.first('password')}}</span>
             </div>
         </div>
 
@@ -57,6 +57,12 @@
                                 duration: 5000
                             })
                             this.$router.push({name:"profile"})
+                        }).catch(error => {
+                            this.$message({
+                                showClose: true,
+                                message: '错了哦，密码有误',
+                                type: 'error'
+                            });
                         })
                     }
                 })

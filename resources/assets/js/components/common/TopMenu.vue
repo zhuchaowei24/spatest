@@ -14,7 +14,7 @@
                          <a>注册</a>
                      </router-link>
                      <router-link  v-if="user.authenticated"  to="/profile" tag="li">
-                         <a>111</a>
+                         <a>{{user.name}}</a>
                      </router-link>
                      <li v-if="user.authenticated"tag="li">
                          <a @click.prevent="logout" href="#">退出</a>
@@ -44,9 +44,6 @@
             ...mapState({
                 user : state=>state.AuthUser
             }),
-//            get () {
-//                return this.$store.state.name
-//            },
         },
         methods:{
             logout(){

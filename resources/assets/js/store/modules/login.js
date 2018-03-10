@@ -6,8 +6,6 @@ export default { //实时store
         return axios.post('/api/login', formData).then(response => {
                 JwtToken.setToken(response.data.token)
                 dispatch('setAuthUser')
-            }).catch(error => {
-                console.log(error.response.data)
             })
         },
         logoutRequest({dispatch}) {

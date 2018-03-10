@@ -8,8 +8,8 @@ export default {
     mutations:{
         [types.SET_AUTH_USER](state,payload){ //更改状态
             state.authenticated = true
-            state.name = payload.name
-            state.email = payload.email
+            state.name = payload.user.name
+            state.email = payload.user.email
         },
         [types.UNSET_AUTH_USER](state,payload){ //更改状态
             state.authenticated = false
@@ -23,8 +23,9 @@ export default {
                console.log(response.data[0])
                commit({
                    type:types.SET_AUTH_USER,
-                   user:response.data[0]
+                   user:response.data
                })
+
            })
        },
         unsetAuthUser({commit}){
