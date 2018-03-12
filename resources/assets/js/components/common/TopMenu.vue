@@ -13,12 +13,13 @@
                      <router-link  v-if="!user.authenticated"  to="/register" tag="li">
                          <a>注册</a>
                      </router-link>
-                     <router-link  v-if="user.authenticated"  to="/profile" tag="li">
-                         <a>{{user.name}}</a>
-                     </router-link>
+
                      <li v-if="user.authenticated"tag="li">
                          <a @click.prevent="logout" href="#">退出</a>
                      </li>
+                     <router-link  v-if="user.authenticated"  to="/profile" tag="li">
+                         <a>{{user.name}}</a>
+                     </router-link>
                  </ul>
              </el-col>
              <el-col :span="6" style="height: 10px;"><div class="grid-content bg-purple"></div></el-col>
@@ -33,7 +34,6 @@
         font-size: 18px;
         line-height: 22px;
         height: 50px;
-
     }
 
 </style>

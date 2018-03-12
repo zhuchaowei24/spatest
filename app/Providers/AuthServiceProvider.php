@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
-        Passport::tokensExpireIn(Carbon::now()->addMinute(30)); //access_token30分钟过期,过期后用refreshtoken去获取信的accesstoken
+        Passport::tokensExpireIn(Carbon::now()->addMinute(2)); //access_token30分钟过期,过期后用refreshtoken去获取信的accesstoken
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(10)); //用户10天后登录信息过期
         //
     }

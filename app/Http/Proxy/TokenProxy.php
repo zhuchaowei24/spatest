@@ -29,6 +29,7 @@ class TokenProxy
            'message' => 'no match'
         ],  421);
     }
+
     public function logout()
     {
         $user = auth()->guard('api')->user; //获取当前登陆者
@@ -45,6 +46,15 @@ class TokenProxy
             'message' => 'logout!'
         ],204);
     }
+
+    public function refresh()
+    {
+        $refreshToken = request()->cookie('refreshToken');
+        return $this->proxy('refresh_token',[
+            'refresh_token' => $refreshToken
+        ]);
+    }
+
     public function proxy($grantType, array $data = []) //代理保存client_id，避免前端保存这些信息，提高安全性
     {
         $data = array_merge($data, [
@@ -61,6 +71,7 @@ class TokenProxy
 
         return response()->json([
             'token' => $token['access_token'],
+            'auth_id' => md5($token['refresh_token']),
             'expires_in' => $token['expires_in']
          ])->cookie('refreshToken', $token['refresh_token'], 14400, null, null,false, true); //设置cookie以及失效时间
     }

@@ -4,8 +4,8 @@ export default { //实时store
     actions : {
         loginRequest({dispatch},formData){
         return axios.post('/api/login', formData).then(response => {
-                JwtToken.setToken(response.data.token)
-                dispatch('setAuthUser')
+                // JwtToken.setToken(response.data.token)
+                dispatch('setAuthUser', response.data)
             })
         },
         logoutRequest({dispatch}) {
@@ -13,6 +13,11 @@ export default { //实时store
                 JwtToken.removeToken()
                 dispatch('unsetAuthUser')
             })
-        }
+        },
+        loginSuccess({dispatch}, tokenResponse){
+            JwtToken.setToken(tokenResponse.token)
+            JwtToken.setAuthId(tokenResponse.auth_id)
+            dispatch('setAuthUser')
+        },
     }
 }
