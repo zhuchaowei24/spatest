@@ -69,7 +69,7 @@ class TokenProxy
             'grant_type' => $grantType,
             'scope' => '',
         ]);
-        $response = $this->http->post('http://www.vueapi.net/oauth/token', [
+        $response = $this->http->post('http://www.zhuchaowei.com/oauth/token', [
             'form_params' => $data
         ]); // 获取token
 
