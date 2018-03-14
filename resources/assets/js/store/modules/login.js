@@ -4,7 +4,7 @@ export default { //实时store
     actions : {
         loginRequest({dispatch},formData){
         return axios.post('/api/login', formData).then(response => {
-                // JwtToken.setToken(response.data.token)
+                JwtToken.setToken(response.data.token)
                 dispatch('setAuthUser', response.data)
             })
         },

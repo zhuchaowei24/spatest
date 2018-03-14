@@ -1,23 +1,31 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <h4>用户登录进来的主页</h4>
-                </div>
-                <div class="panel-body">
-                    <strong>这是用户的主页，需要登陆进来才能查看</strong>
-                </div>
-            </div>
-        </div>
+    <div style="width:100%;height: 100%">
+        <el-row>
+            <el-col :span="4"><i class="el-icon-star-on"></i></el-col>
+            <el-col :span="20">
+                {{user.name}}
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="4"><i class="el-icon-loading"></i></el-col>
+            <el-col :span="20">
+                {{user.email}}
+            </el-col>
+        </el-row>
     </div>
 </template>
 <style>
 </style>
 <script>
+    import {mapState} from  'vuex'
     export default {
-        data() {
-            return {msg: 'hello vue'}
+        created(){
+            this.$store.dispatch('setAuthUser');
         },
+        computed:{
+            ...mapState({
+                user: state => state.AuthUser
+            })
+        }
     }
 </script> 

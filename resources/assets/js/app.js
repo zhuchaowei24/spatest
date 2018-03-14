@@ -27,7 +27,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 window.Vue = require('vue');
 Vue.use(ElementUI)
 Vue.use(VueRouter)
-Vue.use(VeeValidate)
+Vue.use(VeeValidate,{
+    fieldsBagName: 'veefields'
+})
 Vue.component('app', App)
 
 /**

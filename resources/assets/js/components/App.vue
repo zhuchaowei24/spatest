@@ -2,7 +2,7 @@
     <div>
         <top-menu></top-menu>
         <transition name="fade" mode="out-in">
-            <router-view></router-view>
+            <router-view style="margin-top: 30px;"></router-view>
         </transition>
     </div>
 </template>

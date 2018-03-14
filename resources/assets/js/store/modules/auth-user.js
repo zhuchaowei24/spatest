@@ -15,6 +15,12 @@ export default {
             state.authenticated = false
             state.name = null
             state.email = null
+        },
+        [types.UPDATE_PROFILE_NAME](state,payload){ //更改状态
+            state.name = payload.value;
+        },
+        [types.UPDATE_PROFILE_EMAIL](state,payload){ //更改状态
+            state.email = payload.value;
         }
     },
     actions:{

@@ -1,5 +1,5 @@
  <template>
-     <el-container>
+     <el-container style="border-bottom: 1px solid beige;background-color: white;">
          <el-header>
              <el-col :span="6" style="height: 10px;"></el-col>
              <el-col :span="6">
@@ -34,6 +34,10 @@
         font-size: 18px;
         line-height: 22px;
         height: 50px;
+    }
+    .el-container{
+
+
     }
 
 </style>

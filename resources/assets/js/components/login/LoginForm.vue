@@ -34,6 +34,7 @@
 </style>
 <script>
     import JwtToken from './../../helpers/jwt'
+    import { Notification } from 'element-ui';
     export default {
         data(){
             return{
@@ -50,7 +51,7 @@
                             password : this.password
                         }
                         this.$store.dispatch('loginRequest',formData).then(response => {
-                            this.$notify({
+                            Notification({
                                 title: '登录成功啦~~！',
                                 type: 'success',
                                 message: '恭喜您登录成功啦',

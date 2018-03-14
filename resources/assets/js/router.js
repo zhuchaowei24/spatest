@@ -37,10 +37,35 @@ let routes = [
         component: require('./components/login/Login'),
         meta:{requireGuest:true}
     },
+    // {
+    //     path:"/profile",
+    //     name: 'profile',
+    //     component: require('./components/user/Profile'),
+    //     meta:{requireAuth:true}
+    // },
     {
         path:"/profile",
-        name: 'profile',
-        component: require('./components/user/Profile'),
+        component: require('./components/user/ProfilewRapper'),
+        children:[
+            {
+                path:'',
+                name:'profile',
+                component:require('./components/user/Profile'),
+                meta:{requireAuth:true}
+            },
+            {
+                path:'/edit-profile',
+                name:'profile.editProfile',
+                component:require('./components/user/EditProfile'),
+                meta:{requireAuth:true}
+            },
+            {
+                path:'/password-profile',
+                name:'profile.editPassword',
+                component:require('./components/user/PasswordProfile'),
+                meta:{requireAuth:true}
+            }
+        ],
         meta:{requireAuth:true}
     },
 ]

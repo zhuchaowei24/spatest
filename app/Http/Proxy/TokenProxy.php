@@ -16,7 +16,7 @@ class TokenProxy
 
     public function login($email, $password)
     {
-        if (auth()->attempt(['email' => $email, 'password' => $password, 'is_active' => 1]))
+        if (auth()->attempt(['email' => $email, 'password' => $password]))
         {   //验证帐号密码，账号是否激活
             return $this->proxy('password', [
                 'username' => request('email'),
@@ -33,6 +33,12 @@ class TokenProxy
     public function logout()
     {
         $user = auth()->guard('api')->user; //获取当前登陆者
+        if (is_null($user)) {
+            app('cookie')->queue(app('cookie')->forget('refreshToken'));
+            return response()->json([
+                'message' => 'logout!'
+            ],204);
+        }
         $access_token = $user->token(); //获取用户额token
         app('db')->table('oauth_refresh_token') //表里面的revoked字段设置
             ->where('access_token_id', $access_token->id)
@@ -40,7 +46,7 @@ class TokenProxy
                'revoked' => true
             ]);
 
-        app('cookie')->forget('refreshToken'); //删除cookie
+        app('cookie')->queue(app('cookie')->forget('refreshToken')); //删除cookie
         $access_token->revoke(); //标记accesstoken为不可认证的
         return response()->json([
             'message' => 'logout!'
