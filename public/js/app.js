@@ -83281,6 +83281,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_element_ui__);
 //
 //
 //
@@ -83335,6 +83337,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -83355,8 +83358,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 password: this.password
             };
             axios.post('/api/register', formData).then(function (response) {
-                console.log('register success');
-                _this.$router.push({ name: 'confirm' });
+                Object(__WEBPACK_IMPORTED_MODULE_0_element_ui__["Notification"])({
+                    title: '注册成功~~！',
+                    type: 'success',
+                    message: '注册成功啦，请登录',
+                    duration: 5000
+                });
+                _this.$router.push({ name: 'login' });
             });
         }
     }

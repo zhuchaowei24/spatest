@@ -53,6 +53,7 @@
 <style>
 </style>
 <script>
+    import { Notification } from 'element-ui';
     export default {
         data(){
             return{
@@ -69,8 +70,13 @@
                    password : this.password
                }
                axios.post('/api/register', formData).then(response => {
-                    console.log('register success')
-                   this.$router.push({name:'confirm'})
+                   Notification({
+                       title: '注册成功~~！',
+                       type: 'success',
+                       message: '注册成功啦，请登录',
+                       duration: 5000
+                   })
+                   this.$router.push({name:'login'})
                })
            }
        }
