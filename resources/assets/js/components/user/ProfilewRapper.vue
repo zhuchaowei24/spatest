@@ -2,23 +2,41 @@
     <div class="container">
         <el-container>
             <el-aside width="200px">
-                <el-menu default-active="1" class="el-menu-vertical-demo">
-                    <el-menu-item index="1">
-                        <i class="el-icon-location"></i>
-                        <span slot="title">
-                             <router-link :to="{name:'profile'}" exact>个人资料</router-link>
-                        </span>
-                    </el-menu-item>
-                    <el-menu-item index="2">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">
-                            <router-link :to="{name:'profile.editProfile'}">修改资料</router-link>
-                        </span>
-                    </el-menu-item>
-                    <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <router-link :to="{name:'profile.editPassword'}">修改密码</router-link>
-                    </el-menu-item>
+                <el-menu default-active="1-1" class="el-menu-vertical-demo">
+                    <router-link :to="{name:'profile'}" exact>
+                        <el-menu-item index="1-1">
+                            <i class="el-icon-location"></i>
+                            <span slot="title">
+                                 个人资料
+                            </span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="{name:'profile.editProfile'}">
+                        <el-menu-item index="2">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">
+                               修改资料
+                            </span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="{name:'profile.editPassword'}">
+                        <el-menu-item index="4">
+                            <i class="el-icon-setting"></i>
+                            修改密码
+                        </el-menu-item>
+                    </router-link>
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <i class="el-icon-news"></i>
+                            <span slot="title">文章</span>
+                        </template>
+                    <el-menu-item-group>
+                        <router-link :to="{name:'profile.pushPost'}">
+                            <el-menu-item index="4-1">发布文章</el-menu-item>
+                        </router-link>
+                        <el-menu-item index="4-2">我的文章</el-menu-item>
+                    </el-menu-item-group>
+                    </el-submenu>
                 </el-menu>
             </el-aside>
             <el-main>
@@ -36,13 +54,24 @@
         margin-left: 20px;
         background-color:white
     }
+    .el-aside a:hover{
+        text-decoration: none;
+    }
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+        min-height: 600px;
+    }
+    .el-main{
+        height:600px;
+    }
+
 </style>
 
 <script>
     export default {
         data() {
             return {
-                isCollapse: true
+                isCollapse: false
             };
         },
         methods: {

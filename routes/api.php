@@ -25,6 +25,7 @@ Route::post('/logout', 'Auth\LoginController@logout');
 Route::post('/token/refresh', 'Auth\LoginController@refresh');
 Route::post('/user/profile/update', 'ProfileController@update')->middleware('auth:api');
 Route::post('/user/password/update', 'ProfileController@password')->middleware('auth:api');
+Route::post('/user/post/push', 'PostsController@push')->middleware('auth:api');
 
 Route::group([  'middleware' => ['api','cors'], 'namespace' => 'VueApi'], function ($router)
 {

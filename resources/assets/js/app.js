@@ -30,6 +30,7 @@ Vue.use(VueRouter)
 Vue.use(VeeValidate,{
     fieldsBagName: 'veefields'
 })
+
 Vue.component('app', App)
 
 /**

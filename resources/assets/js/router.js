@@ -64,6 +64,12 @@ let routes = [
                 name:'profile.editPassword',
                 component:require('./components/user/PasswordProfile'),
                 meta:{requireAuth:true}
+            },
+            {
+                path:'/push-post',
+                name:'profile.pushPost',
+                component:require('./components/user/PushPost'),
+                meta:{requireAuth:true}
             }
         ],
         meta:{requireAuth:true}

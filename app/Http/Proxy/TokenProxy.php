@@ -6,6 +6,8 @@
  * Time: 23:08
  */
 namespace App\Http\Proxy;
+use App\Models\OauthClient;
+
 class TokenProxy
 {
     protected  $http;
@@ -63,18 +65,23 @@ class TokenProxy
 
     public function proxy($grantType, array $data = []) //代理保存client_id，避免前端保存这些信息，提高安全性
     {
+        $oauth_client = OauthClient::query()
+            ->where('password_client', 1)
+            ->orderBy('id', 'desc')
+            ->first();
         $data = array_merge($data, [
-            'client_id' => '2',
-            'client_secret' => 'ddxd3wZLuVuEQe8k0anRmxDWmjE1pfVFvW4LOJVh',
+            'client_id' => $oauth_client['id'],
+            'client_secret' => $oauth_client['secret'],
             'grant_type' => $grantType,
             'scope' => '',
         ]);
-        $response = $this->http->post('http://www.zhuchaowei.com/oauth/token', [
+
+        $response = $this->http->post(url('/').'/oauth/token', [
             'form_params' => $data
         ]); // 获取token
 
         $token = json_decode((string)$response->getBody(), true);
-
+    
         return response()->json([
             'token' => $token['access_token'],
             'auth_id' => md5($token['refresh_token']),
