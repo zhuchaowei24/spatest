@@ -34,7 +34,6 @@
                         <router-link :to="{name:'profile.pushPost'}">
                             <el-menu-item index="4-1">发布文章</el-menu-item>
                         </router-link>
-                        <el-menu-item index="4-2">我的文章</el-menu-item>
                     </el-menu-item-group>
                     </el-submenu>
                 </el-menu>

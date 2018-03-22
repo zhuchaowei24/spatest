@@ -11,7 +11,7 @@
         <!--<el-rate v-model="value1"></el-rate>-->
     <!--</div>-->
     <el-form-item>
-        <el-button type="button" @click="onSubmit">立即更新</el-button>
+        <el-button type="button" @click="onSubmit">立即发布</el-button>
     </el-form-item>
 </el-form>
 </template>

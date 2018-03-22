@@ -26,10 +26,10 @@ class PostsController extends Controller
             $post = $post->where('users.name', $request->input('name'));
         }
         if ($request->input('date_begin')) {
-            $post = $post->where('posts.created_at', '>',$request->input('date_begin'));
+            $post = $post->where('posts.created_at', '>=',$request->input('date_begin'));
         }
         if ($request->input('date_end')) {
-            $post = $post->where('posts.created_at', '<',$request->input('date_end'));
+            $post = $post->where('posts.created_at', '<=',$request->input('date_end'));
         }
         $post = $post->orderBy($cloumn,$order)->paginate($size);
         return $post;
